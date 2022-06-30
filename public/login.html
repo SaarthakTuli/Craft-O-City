@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="login.css">
+    <script defer src="login.js"></script>
+    <style>
+        body {
+            background-image: url("FirstPage.JPG");
+            background-size: cover;
+            display: block;
+        }
+        
+        #main-holder {
+            position: absolute;
+            height: 500px;
+            width: 300px;
+            size: 200px;
+            top: 10%;
+            left: 40%;
+        }
+        
+        @media(max-width: 800px) {
+            body {
+                margin: auto;
+                background-image: url("start2.png");
+                background-repeat: no-repeat;
+                background-size: 100%;
+                display: block;
+            }
+            #main-holder {
+                position: absolute;
+                height: 400px;
+                width: 250px;
+                size: 150px;
+                top: 20%;
+                left: 20%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main id="main-holder">
+        <h1 id="login-header">Login</h1>
+
+        <div id="login-error-msg-holder">
+            <p id="login-error-msg">Invalid username <span id="error-msg-second-line">and/or password</span></p>
+        </div>
+
+        <form id="login-form">
+            <input type="text" name="username" id="username-field" class="login-form-field" placeholder="Username">
+            <input type="password" name="password" id="password-field" class="login-form-field" placeholder="Password">
+            <input type="submit" value="Login" id="login-form-submit">
+        </form>
+
+    </main>
+
+
+</body>
+
+</html>

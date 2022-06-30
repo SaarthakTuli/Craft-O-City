@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Main Game</title>
+    <script>
+        window.history.forward();
+
+        function noBack() {
+            window.history.forward();
+        }
+    </script>
+    <link href="main.css" rel="stylesheet" />
+    <style>
+        body {
+            background-image: url("bg.jpg");
+            background-size: cover;
+        }
+        
+        img {
+            max-width: 50%;
+            height: auto;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <div class="row">
+        <!--Total Money-->
+        <div id="one">
+            <div class="block">
+                <div>Total Money:</div>
+                <div id="incrementText">
+                    <script>
+                        const Money = localStorage.getItem("Money");
+                        document.write(Money);
+                    </script>
+                </div>
+            </div>
+        </div>
+
+        <br class="responsive">
+
+
+        <!--Total Residents-->
+        <div id="two">
+            <div class="block">
+                <div>CurrentPopulation:
+                    <div id="currentPeople">
+                        <script>
+                            const CurrentPeople = localStorage.getItem("CurrentPeople");
+                            document.write(CurrentPeople);
+                        </script>
+                    </div>
+                </div>
+
+                <div class="block">
+                    <div>Population Goal:</div>
+                    <div id="peopleGoal">
+                        <script>
+                            const PeopleGoal = localStorage.getItem("PeopleGoal");
+                            document.write(PeopleGoal);
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br class="responsive">
+
+        <!-- Wood -->
+        <div id="three">
+            <div class="block">
+                <div>Wood:</div>
+                <div id="incrementWood">
+                    <script>
+                        const wood = localStorage.getItem("Wood");
+                        document.write(wood);
+                    </script>
+                </div>
+            </div>
+
+            <!-- Brick -->
+            <div class="block">
+                <div>Brick:</div>
+                <div id="incrementBrick">
+                    <script>
+                        const brick = localStorage.getItem("Brick");
+                        document.write(brick);
+                    </script>
+                </div>
+            </div>
+
+            <!-- Steel -->
+            <div class="block">
+                <div>Metal:</div>
+                <div id="incrementMetal">
+                    <script>
+                        const metal = localStorage.getItem("Metal");
+                        document.write(metal);
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="mapDiv">
+        <img id="map" name="map" src="map.jpg" />
+    </div>
+
+
+    <div id="End">
+        <!--<div>
+            <button type="submit" id="saveData" onclick="StatusChange()">Submit</button>
+        </div>-->
+
+        <div>
+            <button type="button" id="EndGame">End Game</button>
+        </div>
+    </div>
+
+    <div class="Resource">
+        <div style="text-align: center;">
+            <p>1. Small House:</p>
+            <p>20 x Brick, 20 x Metal, 15 x Wood</p>
+            <div id="countHouse">
+                <script>
+                    const smallHouse = localStorage.getItem("SmallHouse");
+                    document.write(smallHouse);
+                </script>
+            </div>
+            <button id="increaseHouse" onclick="IncrementHouse()">Buy S.House</button>
+        </div>
+
+        <div style="text-align: center;">
+            <p>2. Big House:</p>
+            <p>30 x Brick, 30 x Metal, 25 x Wood</p>
+            <div id="countBHouse">
+                <script>
+                    const bigHouse = localStorage.getItem("BigHouse");
+                    document.write(bigHouse);
+                </script>
+            </div>
+            <button id="increaseBHouse" onclick="IncrementBigHouse()">Buy B.House</button>
+        </div>
+
+        <div style="text-align: center;">
+            <p>3. Factory:</p>
+            <p>40 x Brick, 35 x Metal, 15 x Wood</p>
+            <div id="countFactory">
+                <script>
+                    const factory = localStorage.getItem("Factory");
+                    document.write(factory);
+                </script>
+            </div>
+            <button id="increaseFactory" onclick="IncrementFactory()">
+          Buy Factory
+        </button>
+        </div>
+
+        <div style="text-align: center;">
+            <p>4. Port:</p>
+            <p>35 x Brick, 50 x Metal, 30 x Wood</p>
+            <div id="countPort">
+                <script>
+                    const port = localStorage.getItem("Port");
+                    document.write(port);
+                </script>
+            </div>
+            <button id="increasePort" onclick="IncrementPort()">
+          Buy Port
+        </button>
+        </div>
+
+        <div style="text-align: center;">
+            <p>5. Hospital:</p>
+            <p>30 x Brick, 25 x Metal, 25 x Wood</p>
+            <div id="countHospital">
+                <script>
+                    const hospital = localStorage.getItem("Hospital");
+                    document.write(hospital);
+                </script>
+            </div>
+            <button id="increaseHospital" onclick="IncrementHospital()">
+          Buy Hospital
+        </button>
+        </div>
+
+        <div style="text-align: center;">
+            <p>6. Farm:</p>
+            <p>35 x Brick, 30 x Wood</p>
+            <div id="countFarm">
+                <script>
+                    const farm = localStorage.getItem("Farm");
+                    document.write(farm);
+                </script>
+            </div>
+            <button id="increaseFarm" onclick="IncrementFarm()">Buy Farm</button>
+        </div>
+
+        <div style="text-align: center;">
+            <p>7. Market:</p>
+            <p>30 x Brick, 25 x Metal, 25 x Wood</p>
+            <div id="countMarket">
+                <script>
+                    const market = localStorage.getItem("Market");
+                    document.write(market);
+                </script>
+            </div>
+            <button id="increaseMarket" onclick="IncrementMarket()">Buy Market</button>
+        </div>
+
+        <!--EXTRA RESOURCES DISPLAY-->
+        <div>
+            <div id="Airport" style="display: none;">
+                <p>Airport:</p>
+                <button id="increaseAirport" onclick="AddAirport()"> Place Prize</button>
+            </div>
+
+            <div id="Amusement Park" style="display: none;">
+                <p>Amusement Park:</p>
+                <button id="increaseAmusementPark" onclick="AddAmusementPark()">Place Prize</button>
+            </div>
+
+            <div id="Mall" style="display: none;">
+                <p>Mall:</p>
+                <button id="increaseMall" onclick="AddMall()">Place Prize</button>
+            </div>
+
+            <div id="Gym" style="display: none;">
+                <p>Gym:</p>
+                <button id="increaseGym" onclick="AddGym()">Place Prize</button>
+            </div>
+        </div>
+    </div>
+    <!--Countdown to end game-->
+    <div id="TotalCount">
+        <div class="SimonTxt">Simon Says you have: </div>
+        <div id="countdown"> 00 : 00 : 00</div>
+    </div>
+    <!--EXTRA RESOURCES-->
+    <!-- <div id="surprise">
+        <label>Surprise: </label>
+        <input type="password" id="password" placeholder="Enter password: ">
+        <button id="CheckExtra">Avail Offer</button>
+    </div> -->
+
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-app.js"; import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-analytics.js"; const firebaseConfig = { apiKey: "AIzaSyCQrgt5myKwYHUh8AGxodO8Q18r1BiMcEA",
+        authDomain: "testgame-1350f.firebaseapp.com", databaseURL: "https://testgame-1350f-default-rtdb.asia-southeast1.firebasedatabase.app", projectId: "testgame-1350f", storageBucket: "testgame-1350f.appspot.com", messagingSenderId: "857245353939",
+        appId: "1:857245353939:web:5be58f3cc7b99697ccd126", measurementId: "G-Y62TM4FLMH", }; /*const firebaseConfig = { apiKey: "AIzaSyD0guwHgzOTjLaw-TvMFjtl8QdOlE0lVxU", authDomain: "craft-o-city.firebaseapp.com", projectId: "craft-o-city", storageBucket:
+        "craft-o-city.appspot.com", messagingSenderId: "921941238400", appId: "1:921941238400:web:6628aaf7fad631205abc65", measurementId: "G-ZVJ0FWH20P" };*/ const app = initializeApp(firebaseConfig); const analytics = getAnalytics(app); import { getDatabase,
+        set, ref, child, update, remove, onValue, } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-database.js"; const db = getDatabase(app); const startingMinutes = 1000000; let time = startingMinutes * 60; setInterval(constantUpdate, 1000);
+        function constantUpdate() { /*const minutes = Math.floor(time /60);*/ let seconds = time % 60; if (time > 0) { --time; let FinalValue = localStorage.getItem("Money"); let FinalWood = localStorage.getItem("Wood");; let FinalBrick = localStorage.getItem("Brick");
+        let FinalMetal = localStorage.getItem("Metal"); let SmallHouseCount = localStorage.getItem("SmallHouse"); let BigHouseCount = localStorage.getItem("BigJouse"); let FactoryCount = localStorage.getItem("Factory"); let HospitalCount = localStorage.getItem("Hospital");
+        let PortCount = localStorage.getItem("Port"); let FarmCount = localStorage.getItem("Farm"); let MarketCount = localStorage.getItem("Market"); let CurrentPeople = localStorage.getItem("CurrentPeople"); let Hunger = localStorage.getItem("Hunger");
+        let Financial = localStorage.getItem("Financial"); let Earthquake = localStorage.getItem("Earthquake"); let Famine = localStorage.getItem("Famine"); let Pandemic = localStorage.getItem("Pandemic"); const username = localStorage.getItem("username");
+        set(ref(db, "/" + username), { NetMoney: FinalValue, FinalWood: FinalWood, FinalBrick: FinalBrick, FinalMetal: FinalMetal, SmallHouseCount: SmallHouseCount, BigHouseCount: BigHouseCount, HospitalCount: HospitalCount, FactoryCount: FactoryCount,
+        PortCount: PortCount, FarmCount: FarmCount, MarketCount: MarketCount, CurrentPeople: CurrentPeople, Hunger: Hunger, Financial: Financial, Earthquake: Earthquake, Famine: Famine, Pandemic: Pandemic, }); } } /* saveData.addEventListener( 'click',
+        ()=> { var FinalValue = document.getElementById("incrementText"); var FinalWood = document.getElementById("incrementWood"); var FinalBrick = document.getElementById("incrementBrick"); var FinalMetal = document.getElementById("incrementMetal");
+        var HouseCount = document.getElementById("countHouse"); var FactoryCount = document.getElementById("countFactory"); var HospitalCount = document.getElementById("countHospital"); var FarmCount = document.getElementById("countFarm"); const username
+        = localStorage.getItem("username"); set(ref(db, username), { NetMoney: FinalValue.innerHTML, FinalWood: FinalWood.innerHTML, FinalBrick: FinalBrick.innerHTML, FinalMetal: FinalMetal.innerHTML, HouseCount: HouseCount.innerHTML, HospitalCount: HospitalCount.innerHTML,
+        FactoryCount: FactoryCount.innerHTML, FarmCount: FarmCount.innerHTML, }); alert("saved") });*/
+    </script>
+    <!--Extra resource Checker and resource functionality-->
+    <!--
+    <script>
+        var extraResourceAvailed = 0;
+        CheckExtra.addEventListener('click', () => {
+            let extraResource = document.querySelector('#password').value;
+
+            if (extraResource == "mall") {
+                document.getElementById("Mall").style.display = "block";
+                extraResourceAvailed = 1;
+                alert("Congratulations on Winning the Mall!");
+                document.getElementById("surprise").style.display = "none";
+            } else if (extraResource == "airport") {
+                document.getElementById("Airport").style.display = "block";
+                extraResourceAvailed = 1;
+                alert("Congratulations on Winning the Airport!");
+                document.getElementById("surprise").style.display = "none";
+            } else if (extraResource == "amusement park") {
+                document.getElementById("Amusement Park").style.display = "block";
+                extraResourceAvailed = 1;
+                alert("Congratulations on Winning the Amusement Park!");
+                document.getElementById("surprise").style.display = "none";
+            } else if (extraResource == "gym") {
+                document.getElementById("Gym").style.display = "block";
+                extraResourceAvailed = 1;
+                alert("Congratulations on Winning the Gym!");
+                document.getElementById("surprise").style.display = "none";
+            } else {
+                alert("You haven't won the auction!!");
+            }
+
+        })
+    </script>
+-->
+
+    <!--Functionality of basic resources-->
+    <script>
+        //Countdown Timer
+        /*const startTime = 90;
+        let mainTime = startTime * 60;*/
+        var countdownElement = document.getElementById("countdown");
+
+        setInterval(MainGame, 1000);
+
+        function MainGame() {
+            let mainTime = localStorage.getItem("TotalTime");
+            let minutes = Math.floor(mainTime / 60);
+            let seconds = mainTime % 60;
+
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            countdownElement.innerHTML = `${minutes}:${seconds}`;
+            if (mainTime > 0) {
+                --mainTime;
+                localStorage.setItem("TotalTime", mainTime);
+            } else {
+                alert("Simon says Time's Up..")
+            }
+        }
+
+
+        /*function MainGame() {
+            let now = new Date().getTime();
+            let t = launchDate - now;
+            if (t > 0) {
+                let days = Math.floor(t / (1000 * 60 * 60 * 24));
+
+                let hours = Math.floor((t % (1000 * 24 * 60 * 60) / (1000 * 60 * 60)));
+                if (hours < 10) {
+                    hours = "0" + hours;
+                }
+
+                let mins = Math.floor((t % (1000 * 60 * 60) / (1000 * 60)));
+                if (mins < 10) {
+                    mins = "0" + mins;
+                }
+
+                let secs = Math.floor((t % (1000 * 60) / (1000)));
+                if (secs < 10) {
+                    secs = "0" + secs;
+                }
+
+                let time1 = `${days} : ${hours} : ${mins} : ${secs} `;
+
+                document.getElementById("countdown").innerText = time1;
+
+
+            }
+        }*/
+
+
+        //Hospital checker
+
+
+        setInterval(HospitalChecker, 90000);
+
+        function HospitalChecker() {
+            let Money = localStorage.getItem("Money");
+            let CountHospital = localStorage.getItem("Hospital");
+            let CurrentPeople = localStorage.getItem("CurrentPeople");
+
+            if (CurrentPeople > 0 && CurrentPeople <= 30) {
+                if (CountHospital == 0) {
+                    for (let i = 0; i < 175; i++) {
+                        --Money;
+                    }
+                } else if (CountHospital == 1) {
+                    for (let i = 0; i < 140; i++) {
+                        --Money;
+                    }
+                }
+            } else if (CurrentPeople > 30 && CurrentPeople <= 60) {
+                if (CountHospital == 0) {
+                    for (let i = 0; i < 350; i++) {
+                        --Money;
+                    }
+                } else if (CountHospital == 1) {
+                    for (let i = 0; i < 280; i++) {
+                        --Money;
+                    }
+                } else if (CountHospital == 2) {
+                    for (let i = 0; i < 210; i++) {
+                        --Money;
+                    }
+                }
+            } else if (CurrentPeople > 60 && CurrentPeople <= 90) {
+                if (CountHospital == 0) {
+                    for (let i = 0; i < 525; i++) {
+                        --Money;
+                    }
+                } else if (CountHospital == 1) {
+                    for (let i = 0; i < 420; i++) {
+                        --Money;
+                    }
+                } else if (CountHospital == 2) {
+                    for (let i = 0; i < 300; i++) {
+                        --Money;
+                    }
+                } else if (CountHospital == 3) {
+                    for (let i = 0; i < 120; i++) {
+                        --Money;
+                    }
+                }
+            }
+
+            document.getElementById("incrementText").innerText = Money;
+            localStorage.setItem("Money", Money);
+        }
+
+        //Chcek Farm
+        var alertGiven = false;
+        var personKilled = false;
+        setInterval(FarmChecker, 1000);
+
+        function FarmChecker() {
+            let Money = localStorage.getItem("Money");
+            let CountFarm = localStorage.getItem("Farm");
+            let CurrentPeople = localStorage.getItem("CurrentPeople");
+            let HungerKilled = localStorage.getItem("Hunger");
+
+            if (CurrentPeople > 0 && CurrentPeople <= 30) {
+                if (CountFarm == 0) {
+                    if (alertGiven == false) {
+                        alert("Youre people need food or they will die in 2 minutes");
+                        alertGiven = true;
+
+                        setInterval(KillHunger, 120000);
+
+                        function KillHunger() {
+                            let CountFarm = localStorage.getItem("Farm");
+                            if (CountFarm == 0) {
+                                if (personKilled == false) {
+                                    --CurrentPeople;
+                                    alert("A Person has dies from hunger...");
+                                    ++HungerKilled;
+                                    localStorage.setItem("Hunger", HungerKilled);
+                                    localStorage.setItem("CurrentPeople", CurrentPeople);
+                                    document.getElementById("currentPeople").innerText = CurrentPeople;
+                                    //alertGiven = false;
+                                }
+                                personKilled = true;
+                            }
+                        } //END OF FN 
+                    }
+                } else {
+                    return;
+                }
+            } else if (CurrentPeople > 30 && CurrentPeople <= 60) {
+                if (CountFarm == 0) {
+                    if (alertGiven == false) {
+                        alert("Youre people need food or they will die in 2 minutes");
+                        alertGiven = true;
+                    }
+
+                    setInterval(KillHunger_2, 120000);
+
+                    function KillHunger_2() {
+                        let CountFarm = localStorage.getItem("Farm");
+                        if (CountFarm == 0) {
+                            if (personKilled == false) {
+                                for (let i = 0; i < 2; i++)
+                                    --CurrentPeople;
+                                alert("A Person has dies from hunger...");
+                                localStorage.setItem("CurrentPeople", CurrentPeople);
+                                document.getElementById("currentPeople").innerText = CurrentPeople;
+                                alertGiven = false;
+                            }
+                            personKilled = true;
+                        }
+                    } // END of fn
+
+
+
+                } else if (CountFarm == 1) {
+                    if (alertGiven == false) {
+                        alert("Youre people need food or they will die in 2 minutes");
+                        alertGiven = true;
+
+                        setInterval(KillHunger, 120000);
+                    }
+                }
+            }
+
+            localStorage.setItem("CurrentPeople", CurrentPeople);
+            document.getElementById("currentPeople").innerText = CurrentPeople;
+        }
+
+        let WOOD = localStorage.getItem("Wood");
+        let BRICK = localStorage.getItem("Brick");
+        let METAL = localStorage.getItem("Metal");
+
+        //End the game button
+        EndGame.addEventListener("click", () => {
+            if (confirm("Are you sure you want to end the game") == true) {
+                var Status = localStorage.getItem("firstTime");
+                Status = false;
+                localStorage.setItem("StatusOfUser", JSON.stringify(Status));
+                window.location.href = "Final.html";
+            }
+        });
+
+        //Main 90 Minute Game Timer...
+
+        // House
+        let SmallHouseCount = localStorage.getItem("SmallHouse");
+        let BigHouseCount = localStorage.getItem("BigHouse");
+        let FactoryCount = localStorage.getItem("Factory");
+        let PortCount = localStorage.getItem("Port");
+        let HospitalCount = localStorage.getItem("Hospital");
+        let FarmCount = localStorage.getItem("Farm");
+        let MarketCount = localStorage.getItem("Market");
+
+        let Crisis_Earthquake = localStorage.getItem("Earthquake_Crisis");
+
+        function IncrementHouse() {
+            let WOOD = localStorage.getItem("Wood");
+            let BRICK = localStorage.getItem("Brick");
+            let METAL = localStorage.getItem("Metal");
+            if (confirm("Do you Want to buy a Small House") == true) {
+                console.log("Hello");
+                let CurrentPeople = localStorage.getItem("CurrentPeople");
+                let SmallHouseCount = localStorage.getItem("SmallHouse");
+
+                if (Crisis_Earthquake == "false") {
+                    if (WOOD >= 15 && BRICK >= 20 && METAL >= 20) {
+                        for (let i = 0; i < 15; i++) {
+                            --WOOD;
+                        }
+
+                        for (let i = 0; i < 20; i++) {
+                            --BRICK;
+                        }
+
+                        for (let i = 0; i < 20; i++) {
+                            --METAL;
+                        }
+
+                        ++SmallHouseCount;
+
+                        let CurrentPeople = localStorage.getItem("CurrentPeople");
+                        for (let i = 0; i < 3; i++) {
+                            ++CurrentPeople;
+                        }
+                        document.getElementById("currentPeople").innerText = CurrentPeople;
+                        localStorage.setItem("CurrentPeople", CurrentPeople);
+
+                        document.getElementById("countHouse").innerText = SmallHouseCount;
+                        document.getElementById("incrementMetal").innerText = METAL;
+                        document.getElementById("incrementBrick").innerText = BRICK;
+                        document.getElementById("incrementWood").innerText = WOOD;
+
+                        localStorage.setItem("Wood", WOOD);
+                        localStorage.setItem("Brick", BRICK);
+                        localStorage.setItem("Metal", METAL);
+                        localStorage.setItem("SmallHouse", SmallHouseCount);
+
+                        setInterval(IncreaseHouseReturn, 90000);
+
+                        function IncreaseHouseReturn() {
+                            let Money = localStorage.getItem("Money");
+
+                            for (let i = 0; i < 85; i++) {
+                                ++Money;
+                            }
+
+                            document.getElementById("incrementText").innerText = Money;
+                            localStorage.setItem("Money", Money)
+                        }
+                    } else {
+                        alert("Insufficient resources");
+                    }
+                } else {
+                    let SmallHouseCount = localStorage.getItem("SmallHouse");
+                    let CurrentPeople = localStorage.getItem("CurrentPeople");
+                    if (WOOD >= 15 && BRICK >= 20 && METAL >= 20) {
+                        console.log(WOOD);
+                        for (let i = 0; i < 15; i++) {
+                            --WOOD;
+                        }
+
+                        for (let i = 0; i < 20; i++) {
+                            --BRICK;
+                        }
+
+                        for (let i = 0; i < 20; i++) {
+                            --METAL;
+                        }
+                        for (let i = 0; i < 3; i++) {
+                            ++CurrentPeople;
+                        }
+
+                        ++SmallHouseCount;
+
+                        document.getElementById("countHouse").innerText = SmallHouseCount;
+                        localStorage.setItem("SmallHouse", SmallHouseCount);
+
+                        document.getElementById("currentPeople").innerText = CurrentPeople;
+                        localStorage.setItem("CurrentPeople", CurrentPeople);
+
+                        localStorage.setItem("Wood", WOOD);
+                        localStorage.setItem("Brick", BRICK);
+                        localStorage.setItem("Metal", METAL);
+
+                        document.getElementById("incrementMetal").innerText = METAL;
+                        document.getElementById("incrementBrick").innerText = BRICK;
+                        document.getElementById("incrementWood").innerText = WOOD;
+
+                        setInterval(IncreaseHouseReturn_Earthquake, 60000);
+
+                        function IncreaseHouseReturn_Earthquake() {
+                            let Money = localStorage.getItem("Money");
+
+                            for (let i = 0; i < 40; i++) {
+                                ++Money;
+                            }
+
+                            document.getElementById("incrementText").innerText = Money;
+                            localStorage.setItem("Money", Money)
+                        }
+                    } else {
+                        alert("Insufficient resources");
+                    }
+                }
+            }
+        } //  Chote waala House increaser
+
+        function IncrementBigHouse() {
+            let WOOD = localStorage.getItem("Wood");
+            let BRICK = localStorage.getItem("Brick");
+            let METAL = localStorage.getItem("Metal");
+            if (confirm("Do you Want to buy a Big House") == true) {
+                let BigHouseCount = localStorage.getItem("BigHouse");
+                let CurrentPeople = localStorage.getItem("CurrentPeople");
+                if (Crisis_Earthquake == "false") {
+                    if (WOOD >= 25 && BRICK >= 30 && METAL >= 30) {
+                        for (let i = 0; i < 25; i++) {
+                            --WOOD;
+                        }
+
+                        for (let i = 0; i < 30; i++) {
+                            --BRICK;
+                        }
+
+                        for (let i = 0; i < 30; i++) {
+                            --METAL;
+                        }
+
+                        ++BigHouseCount;
+
+
+                        let CurrentPeople = localStorage.getItem("CurrentPeople");
+                        for (let i = 0; i < 5; i++) {
+                            ++CurrentPeople;
+                        }
+                        document.getElementById("currentPeople").innerText = CurrentPeople;
+                        localStorage.setItem("CurrentPeople", CurrentPeople);
+
+                        document.getElementById("countBHouse").innerText = BigHouseCount;
+                        localStorage.setItem("BigHouse", BigHouseCount);
+                        document.getElementById("incrementMetal").innerText = METAL;
+                        document.getElementById("incrementBrick").innerText = BRICK;
+                        document.getElementById("incrementWood").innerText = WOOD;
+
+                        localStorage.setItem("Wood", WOOD);
+                        localStorage.setItem("Brick", BRICK);
+                        localStorage.setItem("Metal", METAL);
+                        setInterval(IncreaseBigHouseReturn, 90000);
+
+                        function IncreaseBigHouseReturn() {
+                            let Money = localStorage.getItem("Money");
+
+                            for (let i = 0; i < 125; i++) {
+                                ++Money;
+                            }
+
+                            document.getElementById("incrementText").innerText = Money;
+                            localStorage.setItem("Money", Money)
+                        }
+
+                    } else {
+                        alert("Insufficient resources");
+
+                    }
+                } else {
+                    let BigHouseCount = localStorage.getItem("BigHouse");
+                    if (WOOD >= 25 && BRICK >= 30 && METAL >= 30) {
+                        let CurrentPeople = localStorage.getItem("CurrentPeople");
+                        for (let i = 0; i < 25; i++) {
+                            --WOOD;
+                        }
+
+                        for (let i = 0; i < 30; i++) {
+                            --BRICK;
+                        }
+
+                        for (let i = 0; i < 30; i++) {
+                            --METAL;
+                        }
+                        for (let i = 0; i < 5; i++) {
+                            ++CurrentPeople;
+                        }
+
+                        ++BigHouseCount;
+                        document.getElementById("countBHouse").innerText = BigHouseCount;
+                        localStorage.setItem("BigHouse", BigHouseCount);
+
+                        document.getElementById("currentPeople").innerText = CurrentPeople;
+                        localStorage.setItem("CurrentPeople", CurrentPeople);
+
+                        localStorage.setItem("Wood", WOOD);
+                        localStorage.setItem("Brick", BRICK);
+                        localStorage.setItem("Metal", METAL);
+
+                        document.getElementById("incrementMetal").innerText = METAL;
+                        document.getElementById("incrementBrick").innerText = BRICK;
+                        document.getElementById("incrementWood").innerText = WOOD;
+
+                        setInterval(IncreaseBigHouseReturn_Earthquake, 60000);
+
+                        function IncreaseBigHouseReturn_Earthquake() {
+                            let Money = localStorage.getItem("Money");
+
+                            for (let i = 0; i < 60; i++) {
+                                ++Money;
+                            }
+
+                            document.getElementById("incrementText").innerText = Money;
+                            localStorage.setItem("Money", Money)
+                        }
+
+                    } else {
+                        alert("Insufficient resources");
+
+                    }
+
+                }
+            }
+
+        } //  Bada waala House increaser
+
+        /*Factory*/
+        function IncrementFactory() {
+            let WOOD = localStorage.getItem("Wood");
+            let BRICK = localStorage.getItem("Brick");
+            let METAL = localStorage.getItem("Metal");
+            if (confirm("Do you Want to buy a Factory") == true) {
+                if (WOOD >= 15 && BRICK >= 40 && METAL >= 35) {
+                    for (let i = 0; i < 15; i++) {
+                        --WOOD;
+                    }
+
+                    for (let i = 0; i < 40; i++) {
+                        --BRICK;
+                    }
+
+                    for (let i = 0; i < 35; i++) {
+                        --METAL;
+                    }
+
+                    ++FactoryCount;
+
+                    localStorage.setItem("Factory", FactoryCount);
+                    document.getElementById("countFactory").innerText = FactoryCount;
+                    document.getElementById("incrementMetal").innerText = METAL;
+                    document.getElementById("incrementBrick").innerText = BRICK;
+                    document.getElementById("incrementWood").innerText = WOOD;
+
+                    localStorage.setItem("Wood", WOOD);
+                    localStorage.setItem("Brick", BRICK);
+                    localStorage.setItem("Metal", METAL);
+
+                    setInterval(IncreaseFactoryReturn, 90000);
+
+                    function IncreaseFactoryReturn() {
+                        let WOOD = localStorage.getItem("Wood");
+                        let BRICK = localStorage.getItem("Brick");
+                        let METAL = localStorage.getItem("Metal");
+                        for (let i = 0; i < 13; i++) {
+                            ++BRICK;
+                        }
+                        for (let i = 0; i < 12; i++) {
+                            ++METAL;
+                        }
+                        for (let i = 0; i < 5; i++) {
+                            ++WOOD;
+                        }
+
+                        document.getElementById("incrementBrick").innerText = BRICK;
+                        document.getElementById("incrementMetal").innerText = METAL;
+                        document.getElementById("incrementWood").innerText = WOOD;
+
+                        localStorage.setItem("Brick", BRICK);
+                        localStorage.setItem("Metal", METAL);
+                        localStorage.setItem("Wood", WOOD);
+                    }
+                } else {
+                    alert("Insufficient resources");
+                }
+            }
+
+
+        }
+
+        //Port
+        function IncrementPort() {
+            let WOOD = localStorage.getItem("Wood");
+            let BRICK = localStorage.getItem("Brick");
+            let METAL = localStorage.getItem("Metal");
+            if (confirm("Do you Want to buy a Port") == true) {
+                if (WOOD >= 30 && BRICK >= 35 && METAL >= 50) {
+                    for (let i = 0; i < 30; i++) {
+                        --WOOD;
+                    }
+
+                    for (let i = 0; i < 35; i++) {
+                        --BRICK;
+                    }
+
+                    for (let i = 0; i < 50; i++) {
+                        --METAL;
+                    }
+
+                    ++PortCount;
+                    document.getElementById("countPort").innerText = PortCount;
+                    localStorage.setItem("Port", PortCount);
+                    document.getElementById("incrementMetal").innerText = METAL;
+                    document.getElementById("incrementBrick").innerText = BRICK;
+                    document.getElementById("incrementWood").innerText = WOOD;
+
+                    localStorage.setItem("Wood", WOOD);
+                    localStorage.setItem("Brick", BRICK);
+                    localStorage.setItem("Metal", METAL);
+
+                    setInterval(IncreasePortReturn, 90000);
+
+                    function IncreasePortReturn() {
+                        let WOOD = localStorage.getItem("Wood");
+                        let BRICK = localStorage.getItem("Brick");
+                        let METAL = localStorage.getItem("Metal");
+                        for (let i = 0; i < 26; i++) {
+                            ++BRICK;
+                        }
+                        for (let i = 0; i < 37; i++) {
+                            ++METAL;
+                        }
+                        for (let i = 0; i < 23; i++) {
+                            ++WOOD;
+                        }
+
+                        document.getElementById("incrementBrick").innerText = BRICK;
+                        document.getElementById("incrementMetal").innerText = METAL;
+                        document.getElementById("incrementWood").innerText = WOOD;
+
+                        localStorage.setItem("Brick", BRICK);
+                        localStorage.setItem("Metal", METAL);
+                        localStorage.setItem("Wood", WOOD);
+                    }
+                } else {
+                    alert("Insufficient resources");
+                }
+            }
+        }
+
+        /*Hospital*/
+        function IncrementHospital() {
+            let WOOD = localStorage.getItem("Wood");
+            let BRICK = localStorage.getItem("Brick");
+            let METAL = localStorage.getItem("Metal");
+            if (confirm("Do you Want to buy a Hospital") == true) {
+                if (WOOD >= 25 && BRICK >= 30 && METAL >= 25) {
+                    for (let i = 0; i < 25; i++) {
+                        --WOOD;
+                    }
+
+                    for (let i = 0; i < 30; i++) {
+                        --BRICK;
+                    }
+
+                    for (let i = 0; i < 25; i++) {
+                        --METAL;
+                    }
+                    ++HospitalCount;
+                    document.getElementById("countHospital").innerText = HospitalCount;
+                    localStorage.setItem("Hospital", HospitalCount);
+                    document.getElementById("incrementMetal").innerText = METAL;
+                    document.getElementById("incrementBrick").innerText = BRICK;
+                    document.getElementById("incrementWood").innerText = WOOD;
+
+                    localStorage.setItem("Wood", WOOD);
+                    localStorage.setItem("Brick", BRICK);
+                    localStorage.setItem("Metal", METAL);
+                } else {
+                    alert("Insufficient resources!!");
+                }
+
+            }
+        }
+
+        /*Farm*/
+        function IncrementFarm() {
+            let WOOD = localStorage.getItem("Wood");
+            let BRICK = localStorage.getItem("Brick");
+            let METAL = localStorage.getItem("Metal");
+
+            if (confirm("Do you Want to buy a Farm") == true) {
+                if (WOOD >= 30 && BRICK >= 35) {
+                    for (let i = 0; i < 30; i++) {
+                        --WOOD;
+                    }
+
+                    for (let i = 0; i < 35; i++) {
+                        --BRICK;
+                    }
+
+                    ++FarmCount;
+                    document.getElementById("countFarm").innerText = FarmCount;
+                    localStorage.setItem("Farm", FarmCount);
+                    document.getElementById("incrementMetal").innerText = METAL;
+                    document.getElementById("incrementBrick").innerText = BRICK;
+                    document.getElementById("incrementWood").innerText = WOOD;
+
+                    localStorage.setItem("Wood", WOOD);
+                    localStorage.setItem("Brick", BRICK);
+                    localStorage.setItem("Metal", METAL);
+                } else {
+                    alert("Insufficient resources!!");
+                }
+            }
+        }
+
+
+        function IncrementMarket() {
+            let WOOD = localStorage.getItem("Wood");
+            let BRICK = localStorage.getItem("Brick");
+            let METAL = localStorage.getItem("Metal");
+            if (confirm("Do you Want to buy a Market") == true) {
+                if (WOOD >= 25 && BRICK >= 30 && METAL >= 25 && MarketCount < Math.round(FarmCount / 2)) {
+                    for (let i = 0; i < 25; i++) {
+                        --WOOD;
+                    }
+
+                    for (let i = 0; i < 30; i++) {
+                        --BRICK;
+                    }
+
+                    for (let i = 0; i < 25; i++) {
+                        --METAL;
+                    }
+
+                    ++MarketCount;
+                    document.getElementById("countMarket").innerText = MarketCount;
+                    localStorage.setItem("Market", MarketCount);
+                    document.getElementById("incrementMetal").innerText = METAL;
+                    document.getElementById("incrementBrick").innerText = BRICK;
+                    document.getElementById("incrementWood").innerText = WOOD;
+
+                    localStorage.setItem("Wood", WOOD);
+                    localStorage.setItem("Brick", BRICK);
+                    localStorage.setItem("Metal", METAL);
+
+                    setInterval(IncreaseMarketReturn, 90000);
+
+                    function IncreaseMarketReturn() {
+                        let Money = localStorage.getItem("Money");
+
+                        for (let i = 0; i < 220; i++) {
+                            ++Money;
+                        }
+
+                        document.getElementById("incrementText").innerText = Money;
+                        localStorage.setItem("Money", Money)
+                    }
+                } else {
+                    alert("Insufficient resources!!");
+                }
+            }
+        }
+        //Write this in main.html ka bottom of body waala script
+
+        document.addEventListener("contextmenu", function(e) {
+            e.preventDefault();
+
+        });
+
+
+        document.onkeydown = function(e) {
+            if (event.keycode == 123) {
+                return false;
+            }
+
+            if (e.ctrlKey && e.shiftKey && e.keycode == "I".charCodeAt(0)) {
+                return false;
+            }
+
+            if (e.ctrlKey && e.shiftKey && e.keycode == "J".charCodeAt(0)) {
+                return false;
+            }
+
+            if (e.ctrlKey && e.keycode == "U".charCodeAt(0)) {
+                return false;
+            }
+        }
+    </script>
+
+    <!--CRISIS YAYYYYYY-->
+
+    <!--
+1. Famine
+2. Financial
+
+*SILENT AUCTION*
+
+3.  Earthquake
+4. Covid-19
+-->
+
+    <!-- 15-20 minutes-->
+    <script id="Famine">
+        let FamineAlertGiven = false;
+        let FamineEndAlert = false;
+        let GameOverFamine = false;
+        let FamineLost = false;
+
+        setInterval(Entire_Crisis_Famine, 1000);
+        let FamineDate = new Date("Mar 5, 2022 13:45").getTime();
+        let FamineTimer = setInterval(Famine, 1000);
+
+
+        let FamineCrisisStarted = false;
+
+        const FamineStartTime = 5;
+        let TotalFamineTime = FamineStartTime * 60;
+
+        function Entire_Crisis_Famine() {
+            if (FamineCrisisStarted == true) {
+                TotalFamineTimeFunction();
+            }
+        }
+
+        function TotalFamineTimeFunction() {
+            if (TotalFamineTime > 0) {
+                --TotalFamineTime;
+
+            } else {
+                let FarmCount = localStorage.getItem("Farm");
+                let CurrentPeople = localStorage.getItem("CurrentPeople");
+
+                if (FarmCount < Math.round(CurrentPeople / 10) && GameOverFamine == false) {
+                    alert("Oh no, You failed to build the necessary Farms in time. Youre Entire Population has Starved to Death.")
+                    GameOverFamine = true;
+                    FamineLost = true;
+                    FamineCrisisStarted = false;
+                    localStorage.setItem("Famine", FamineLost);
+                } else {
+                    if (FamineEndAlert == false) {
+                        alert("Congratulations, You have survived the Famine!!!");
+                        FamineCrisisStarted = false;
+                        FamineEndAlert = true;
+                        GameOverFamine = true;
+                    }
+
+                }
+            }
+        }
+
+        function Famine() {
+            let now = new Date().getTime();
+            let FamineTimer = FamineDate - now;
+            let mainTime = localStorage.getItem("TotalTime");
+
+            if ((mainTime < 2700)) {
+                if (FamineAlertGiven == false) {
+                    let CurrentPeople = localStorage.getItem("CurrentPeople");
+                    alert(`No rainfall, no food production and no food availability. Welcome to a new crisis. You city is facing a famine, and it is your duty to help out your citizens before they die from hunger. Let me give you a hint, the only ray of hope is your farms. (1 farm can provide food to 10 people), you have 5 minutes. `);
+                    FamineAlertGiven = true;
+                }
+                FamineCrisisStarted = true;
+            }
+        }
+    </script>
+
+    <!-- 22-27 minutes-->
+
+    <script id="Financial Crisis">
+        let FinancialAlertGiven = false;
+        let FinancialEndAlert = false;
+        let GameOverFinancial = false;
+        let FinancialLost = false;
+
+        setInterval(Entire_Crisis_Financial, 1000);
+        let FinancialDate = new Date("Mar 5, 2022 13:52").getTime();
+        let timerFinancial = setInterval(Financial, 1000);
+
+
+        let FinancialCrisisStarted = false;
+
+        const FinancialStartTime = 5;
+        let TotalFinancialTime = FinancialStartTime * 60;
+
+        function Entire_Crisis_Financial() {
+            if (FinancialCrisisStarted == true) {
+                TotalFinancialTimeFunction();
+            }
+        }
+
+        function TotalFinancialTimeFunction() {
+            if (TotalFinancialTime > 0) {
+                --TotalFinancialTime;
+
+            } else {
+                let Money = localStorage.getItem("Money");
+
+                if (Money < 50000 && GameOverFinancial == false) {
+                    alert("Oh no, you failed to meet the required minimum amount to survive...");
+                    GameOverFinancial = true;
+                    FinancialLost = true;
+                    localStorage.setItem("Financial", FinancialLost);
+                    GameOverFinancial = true;
+                    FinancialEndAlert = true;
+                    FinancialCrisisStarted = false;
+                } else {
+                    if (FinancialEndAlert == false) {
+                        alert("Congratulations, You are financially independent !!!")
+                        FinancialEndAlert = true;
+                        GameOverFinancial = true;
+                        FinancialCrisisStarted = false;
+                    }
+
+                }
+            }
+        }
+
+        function Financial() {
+            let now = new Date().getTime();
+            let timerFinancial = FinancialDate - now;
+            let mainTime = localStorage.getItem("TotalTime");
+
+            if ((mainTime < 2280)) {
+                if (FinancialAlertGiven == false) {
+                    alert("Uh-oh, seems like someone's is about to get broke. Your city is about to face a very big financial crisis, and the only way out is to have a minimum of 50,000 cash with you in the next five minutes. Make sure you arrange the money, or the consequences will be too hard to handle.");
+                    FinancialAlertGiven = true;
+                }
+                FinancialCrisisStarted = true;
+            }
+        }
+    </script>
+
+    <!--SILENT AUCTIONNNNNNNNN
+    27-42 minutes-->
+
+
+    <!-- 42-47 minutes-->
+    <script id="Earthquake">
+        let EarthquakeAlert = true;
+        let Earthquake_started = false;
+        let EarthquakeEndAlert = false;
+        let EarthquakeLost = false;
+        let EarthquakeGameOver = false;
+        setInterval(Entire_Crisis_Earthquake, 1000);
+
+        let EarthquakeDate = new Date("Mar 5, 2022 14:12").getTime();
+        let timerEarthquake = setInterval(Earthquake, 1000);
+
+        Crisis_Earthquake = localStorage.getItem("Earthquake");
+
+
+
+        const EarthquakeStartTime = 5;
+        let TotalEarthquakeTime = EarthquakeStartTime * 60;
+
+        let PeopleNeededToWin = localStorage.getItem("CurrentPeople");
+
+        function Entire_Crisis_Earthquake() {
+            if (Earthquake_started == true) {
+                TotalEarthquakeTimeFunction();
+            }
+        }
+
+        function TotalEarthquakeTimeFunction() {
+            if (TotalEarthquakeTime > 0) {
+                --TotalEarthquakeTime;
+
+            } else {
+                let CurrentPeople = localStorage.getItem("CurrentPeople");
+
+                if (CurrentPeople < ((PeopleNeededToWin * 2) / 5) && EarthquakeGameOver == false) {
+                    alert("Congratulations, you have survived the Earthquake !!");
+                    EarthquakeGameOver = true;
+                    EarthquakeLost = true;
+                    localStorage.setItem("Earthquake");
+                    EarthquakeEndAlert = true;
+                } else {
+                    if (EarthquakeEndAlert == false) {
+                        alert("Earthquake Crisis has finished..!!");
+                        EarthquakeEndAlert = true;
+                        EarthquakeGameOver = true;
+                    }
+                    Crisis_Earthquake = false;
+                }
+
+            }
+        }
+
+        function Earthquake() {
+            let now = new Date().getTime();
+            let timeEarthquake = EarthquakeDate - now;
+            let mainTime = localStorage.getItem("TotalTime");
+
+            if ((mainTime < 1080)) {
+                if (Earthquake_started == false) {
+                    Crisis_Earthquake = true;
+                    localStorage.setItem("Earthquake", Crisis_Earthquake);
+
+                    var CurrentPeople = localStorage.getItem("CurrentPeople");
+                    var SmallHouseCount = localStorage.getItem("SmallHouse");
+                    var BigHouseCount = localStorage.getItem("BigHouse");
+
+                    if (CurrentPeople % 2 == 0) CurrentPeople = (CurrentPeople / 2);
+                    else CurrentPeople = Math.round(CurrentPeople / 2);
+
+                    if (SmallHouseCount % 2 == 0) SmallHouseCount = (SmallHouseCount / 2);
+                    else SmallHouseCount = Math.round(SmallHouseCount / 2);
+
+                    if (BigHouseCount % 2 == 0) BigHouseCount = BigHouseCount / 2;
+                    else BigHouseCount = Math.round(BigHouseCount / 2);
+
+                    localStorage.setItem("SmallHouse", SmallHouseCount);
+                    localStorage.setItem("BigHouse", BigHouseCount);
+                    localStorage.setItem("CurrentPeople", CurrentPeople);
+
+                    document.getElementById("countHouse").innerText = SmallHouseCount;
+                    document.getElementById("countBHouse").innerText = BigHouseCount;
+                    document.getElementById("currentPeople").innerText = CurrentPeople;
+
+                    if (EarthquakeAlert == true) {
+                        alert(`No, the website ain't shaking. Its your city. An unpredicted earthquake has just hit your city. The very high magnitude lead to destruction of houses and farms in your city. But you do not need to worry, unless you don't have enough resources to build back your city. (Hint- You need to recover atleast 40% of the people you have lost), you have 5 minutes`);
+                        EarthquakeAlert = false;
+                    }
+                    Earthquake_started = true;
+                }
+            }
+        }
+    </script>
+
+
+    <!-- 49-54 minutes-->
+    <script id="Covid-19">
+        let PandemicAlertGiven = false;
+        let PandemicEndAlert = false;
+        let GameOverPandemic = false;
+        let PandemicLost = false;
+        setInterval(Entire_Crisis_Pandemic, 1000);
+        let PandemicDate = new Date("Mar 5, 2022 14:19").getTime();
+        let PandemicTimer = setInterval(Pandemic, 1000);
+
+
+        let PandemicCrisisStarted = false;
+
+        const PandemicStartTime = 5;
+        let TotalPandemicTime = PandemicStartTime * 60;
+
+        function Entire_Crisis_Pandemic() {
+            if (PandemicCrisisStarted == true) {
+                TotalPandemicTimeFunction();
+            }
+        }
+
+        function TotalPandemicTimeFunction() {
+            if (TotalPandemicTime > 0) {
+                --TotalPandemicTime;
+
+            } else {
+                let HospitalCount = localStorage.getItem("Hospital");
+                let CurrentPeople = localStorage.getItem("CurrentPeople");
+
+                if (HospitalCount < Math.round(CurrentPeople / 10) && GameOverPandemic == false) {
+                    alert("Oh no, You failed to build the necessary hospitals in time. Youre Entire Population has died.");
+                    GameOverPandemic = true;
+                    PandemicLost = true;
+                    localStorage.setItem("Pandemic", PandemicLost);
+                    PandemicCrisisStarted = false;
+                } else {
+                    if (PandemicEndAlert == false) {
+                        alert("Congratulations, You have survived Covid-19!!!");
+                        PandemicEndAlert = true;
+                        GameOverPandemic = true;
+                        PandemicCrisisStarted = false;
+                    }
+                }
+            }
+        }
+
+        function Pandemic() {
+            let now = new Date().getTime();
+            let PandemicTimer = PandemicDate - now;
+            let mainTime = localStorage.getItem("TotalTime");
+
+            let CurrentPeople = localStorage.getItem("CurrentPeople");
+
+            if ((mainTime < 660)) {
+                if (PandemicAlertGiven == false) {
+                    alert(`Coughs A city is not a city if it hasn't been through a health crisis atleast once. An unknown virus has started to spread in your city, and the rate of spread is much higher than what you can think of. The only way to survive- hospitals. Make sure to build enough hospitals to accomodate your people before this virus becomes deadly. (Hint- 1 hospital has beds enough for 10 people), you have 5 minutes`);
+                    PandemicAlertGiven = true;
+                }
+                PandemicCrisisStarted = true;
+            }
+        }
+    </script>
+
+</body>
+
+</html>

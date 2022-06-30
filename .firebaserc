@@ -1,0 +1,8 @@
+{
+  "projects": {
+    "default": "testgame-1350f",
+    "FinalTestForGame": "testfornewgame-91a3a",
+    "Craft-O-City": "testgame-1350f"
+  },
+  "targets": {}
+}

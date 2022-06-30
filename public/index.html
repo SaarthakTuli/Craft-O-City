@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start Page</title>
+    <script>
+        var Status = localStorage.getItem("StatusOfUser");
+        if (Status === "" || Status === "null") {
+            var Status = true;
+        }
+
+        localStorage.setItem("StatusOfUser", JSON.stringify(Status));
+    </script>
+
+    <style>
+        body {
+            background-image: url("FirstPage.JPG");
+            background-size: cover;
+            display: block;
+        }
+        
+        #password {
+            position: absolute;
+            top: 60%;
+            left: 45%;
+            font-size: 20px;
+            border-radius: 10px;
+        }
+        
+        @media(max-width: 800px) {
+            body {
+                background-image: url("start2.png");
+                background-repeat: no-repeat;
+                background-size: cover;
+                display: block;
+            }
+            #password {
+                position: absolute;
+                left: 40%;
+                right: 40%;
+                top: 65%;
+                bottom: 30%;
+                font-size: 10px;
+                font-weight: bold;
+            }
+        }
+    </style>
+</head>
+
+<SCRIPT>
+    function passWord() {
+        window.location.href = "login.html";
+    }
+</SCRIPT>
+
+<body>
+    <button id="password" class="pass" onclick="passWord()">Enter Your City </button>
+
+</body>
+
+</html>
